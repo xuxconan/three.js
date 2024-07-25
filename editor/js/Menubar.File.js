@@ -287,7 +287,13 @@ function MenubarFile( editor ) {
 
 		const { GLTFExporter } = await import( 'three/addons/exporters/GLTFExporter.js' );
 
+		const { XUXAmbientLightExtensionExporter } = await import( '../../customized/GLTFLoaderExtensions/XUXAmbientLightExtension/Exporter.js' );
+
 		const exporter = new GLTFExporter();
+
+		exporter.register(function(writer) {
+			return new XUXAmbientLightExtensionExporter(writer);
+		})
 
 		exporter.parse( scene, function ( result ) {
 
@@ -318,7 +324,17 @@ function MenubarFile( editor ) {
 
 		const { GLTFExporter } = await import( 'three/addons/exporters/GLTFExporter.js' );
 
+		const { XUXAmbientLightExtensionExporter } = await import( '../../customized/GLTFLoaderExtensions/XUXAmbientLightExtension/Exporter.js' );
+		const { XUXMoreMapSupportExtensionExporter } = await import( '../../customized/GLTFLoaderExtensions/XUXMoreMapSupportExtension/Exporter.js' );
+
 		const exporter = new GLTFExporter();
+
+		exporter.register(function(writer) {
+			return new XUXAmbientLightExtensionExporter(writer);
+		});
+		exporter.register(function(writer) {
+			return new XUXMoreMapSupportExtensionExporter(writer);
+		});
 
 		exporter.parse( scene, function ( result ) {
 

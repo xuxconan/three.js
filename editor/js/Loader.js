@@ -965,6 +965,9 @@ function Loader( editor ) {
 		const { KTX2Loader } = await import( 'three/addons/loaders/KTX2Loader.js' );
 		const { MeshoptDecoder } = await import( 'three/addons/libs/meshopt_decoder.module.js' );
 
+		const { XUXAmbientLightExtensionLoader } = await import( '../../customized/GLTFLoaderExtensions/XUXAmbientLightExtension/Loader.js' );
+		const { XUXMoreMapSupportExtensionLoader } = await import( '../../customized/GLTFLoaderExtensions/XUXMoreMapSupportExtension/Loader.js' );
+
 		const dracoLoader = new DRACOLoader();
 		dracoLoader.setDecoderPath( '../examples/jsm/libs/draco/gltf/' );
 
@@ -972,8 +975,15 @@ function Loader( editor ) {
 		ktx2Loader.setTranscoderPath( '../examples/jsm/libs/basis/' );
 
 		editor.signals.rendererDetectKTX2Support.dispatch( ktx2Loader );
-
 		const loader = new GLTFLoader( manager );
+
+		loader.register(function(parser) {
+			return new XUXAmbientLightExtensionLoader(parser);
+		});
+		loader.register(function(parser) {
+			return new XUXMoreMapSupportExtensionLoader(parser);
+		});
+
 		loader.setDRACOLoader( dracoLoader );
 		loader.setKTX2Loader( ktx2Loader );
 		loader.setMeshoptDecoder( MeshoptDecoder );
