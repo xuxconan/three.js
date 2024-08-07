@@ -1,9 +1,9 @@
-class XUXAmbientLightExtensionExporter {
+class XUXMoreLightSupportExtensionExporter {
 
 	constructor( writer ) {
 
 		this.writer = writer;
-		this.name = 'XUX_ambient_light';
+		this.name = 'XUX_more_light_support';
 
 	}
 
@@ -69,4 +69,4 @@ class XUXAmbientLightExtensionExporter {
 
 }
 
-export { XUXAmbientLightExtensionExporter };
+export { XUXMoreLightSupportExtensionExporter };

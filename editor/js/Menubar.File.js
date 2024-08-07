@@ -2,6 +2,15 @@ import { UIPanel, UIRow, UIHorizontalRule } from './libs/ui.js';
 
 function MenubarFile( editor ) {
 
+	function parseNumber( key, value ) {
+
+		var precision = config.getKey( 'exportPrecision' );
+
+		return typeof value === 'number' ? parseFloat( value.toFixed( precision ) ) : value;
+
+	}
+
+	const config = editor.config;
 	const strings = editor.strings;
 
 	const saveArrayBuffer = editor.utils.saveArrayBuffer;
@@ -230,6 +239,40 @@ function MenubarFile( editor ) {
 	const fileExportSubmenu = new UIPanel().setPosition( 'fixed' ).addClass( 'options' ).setDisplay( 'none' );
 	fileExportSubmenuTitle.add( fileExportSubmenu );
 
+	// Export JSON
+
+	option = new UIRow();
+	option.setClass( 'option' );
+	option.setTextContent( 'JSON' );
+	option.onClick( function () {
+
+		var object = editor.selected;
+
+		if ( object === null ) {
+
+			alert( strings.getKey( 'prompt/file/export/noMeshSelected' ) );
+			return;
+
+		}
+
+		var output = object.toJSON();
+
+		try {
+
+			output = JSON.stringify( output, parseNumber, '\t' );
+			output = output.replace( /[\n\t]+([\d\.e\-\[\]]+)/g, '$1' );
+
+		} catch ( e ) {
+
+			output = JSON.stringify( output );
+
+		}
+
+		saveString( output, 'model.json' );
+
+	} );
+	fileExportSubmenu.add( option );
+
 	// Export DRC
 
 	option = new UIRow();
@@ -275,7 +318,10 @@ function MenubarFile( editor ) {
 	option.onClick( async function () {
 
 		const scene = editor.scene;
-		const animations = getAnimations( scene );
+		const selected = editor.selected;
+
+		const object = selected || scene;
+		const animations = getAnimations( object );
 
 		const optimizedAnimations = [];
 
@@ -287,15 +333,19 @@ function MenubarFile( editor ) {
 
 		const { GLTFExporter } = await import( 'three/addons/exporters/GLTFExporter.js' );
 
-		const { XUXAmbientLightExtensionExporter } = await import( '../../customized/GLTFLoaderExtensions/XUXAmbientLightExtension/Exporter.js' );
+		const { XUXMoreLightSupportExtensionExporter } = await import( '../customized/GLTFLoaderExtensions/XUXMoreLightSupportExtension/Exporter.js' );
+		const { XUXMoreMapSupportExtensionExporter } = await import( '../customized/GLTFLoaderExtensions/XUXMoreMapSupportExtension/Exporter.js' );
 
 		const exporter = new GLTFExporter();
 
 		exporter.register(function(writer) {
-			return new XUXAmbientLightExtensionExporter(writer);
+			return new XUXMoreLightSupportExtensionExporter(writer);
 		})
+		exporter.register(function(writer) {
+			return new XUXMoreMapSupportExtensionExporter(writer);
+		});
 
-		exporter.parse( scene, function ( result ) {
+		exporter.parse( object, function ( result ) {
 
 			saveArrayBuffer( result, 'scene.glb' );
 
@@ -312,7 +362,10 @@ function MenubarFile( editor ) {
 	option.onClick( async function () {
 
 		const scene = editor.scene;
-		const animations = getAnimations( scene );
+		const selected = editor.selected;
+
+		const object = selected || scene;
+		const animations = getAnimations( object );
 
 		const optimizedAnimations = [];
 
@@ -324,19 +377,19 @@ function MenubarFile( editor ) {
 
 		const { GLTFExporter } = await import( 'three/addons/exporters/GLTFExporter.js' );
 
-		const { XUXAmbientLightExtensionExporter } = await import( '../../customized/GLTFLoaderExtensions/XUXAmbientLightExtension/Exporter.js' );
-		const { XUXMoreMapSupportExtensionExporter } = await import( '../../customized/GLTFLoaderExtensions/XUXMoreMapSupportExtension/Exporter.js' );
+		const { XUXMoreLightSupportExtensionExporter } = await import( '../customized/GLTFLoaderExtensions/XUXMoreLightSupportExtension/Exporter.js' );
+		const { XUXMoreMapSupportExtensionExporter } = await import( '../customized/GLTFLoaderExtensions/XUXMoreMapSupportExtension/Exporter.js' );
 
 		const exporter = new GLTFExporter();
 
 		exporter.register(function(writer) {
-			return new XUXAmbientLightExtensionExporter(writer);
+			return new XUXMoreLightSupportExtensionExporter(writer);
 		});
 		exporter.register(function(writer) {
 			return new XUXMoreMapSupportExtensionExporter(writer);
 		});
 
-		exporter.parse( scene, function ( result ) {
+		exporter.parse( object, function ( result ) {
 
 			saveString( JSON.stringify( result, null, 2 ), 'scene.gltf' );
 

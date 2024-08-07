@@ -23,12 +23,12 @@ function assignExtrasToUserData( object, gltfDef ) {
 
 }
 
-class XUXAmbientLightExtensionLoader {
+class XUXMoreLightSupportExtensionLoader {
 
 	constructor( parser ) {
 
 		this.parser = parser;
-		this.name = "XUX_ambient_light";
+		this.name = "XUX_more_light_support";
 
 		// Object3D instance caches
 		this.cache = { refs: {}, uses: {} };
@@ -59,7 +59,7 @@ class XUXAmbientLightExtensionLoader {
 	_loadLight( lightIndex ) {
 
 		const parser = this.parser;
-		const cacheKey = 'ambient_light:' + lightIndex;
+		const cacheKey = 'XUX_more_light_support:' + lightIndex;
 		let dependency = parser.cache.get( cacheKey );
 
 		if ( dependency ) return dependency;
@@ -135,4 +135,4 @@ class XUXAmbientLightExtensionLoader {
 
 }
 
-export { XUXAmbientLightExtensionLoader };
+export { XUXMoreLightSupportExtensionLoader };
