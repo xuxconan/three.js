@@ -94,6 +94,8 @@ function Editor() {
 
 		pathTracerUpdated: new Signal(),
 
+		// customized
+		hideAllMapMoreSettings: new Signal(),
 	};
 
 	this.config = new Config();
