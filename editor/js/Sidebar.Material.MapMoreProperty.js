@@ -91,6 +91,11 @@ function SidebarMaterialMapMoreProperty( editor, property, uiParent ) {
 	const selectWidth = "150px";
 	const selectFontSize = "12px";
 
+	let object = null;
+	let map = null;
+	let materialSlot = null;
+	let material = null;
+
 	const moreBtnRow = new UIRow();
 	const moreBtn = new UIButton( strings.getKey("sidebar/mapMore/showBtnLabel") )
 		.setMarginLeft(indent)
@@ -120,6 +125,41 @@ function SidebarMaterialMapMoreProperty( editor, property, uiParent ) {
 			moreRows[i].setDisplay( 'none' );
 		}
 	}
+
+	// saveImg
+	function saveImg() {
+		const img = map?.source?.data;
+		let src = img?.src;
+		if (!src || !(img instanceof HTMLImageElement) || (typeof src !== "string"))
+			return alert("未能获取到贴图的图片数据！");
+		if (src.search(/data:image\/[^;]+;base64,/gi) < 0) {
+			img.setAttribute("crossorigin", "anonymous");
+			const canvas = document.createElement("canvas");
+			canvas.width = img.width;
+			canvas.height = img.height;
+			const ctx = canvas.getContext("2d");
+			ctx?.save();
+			ctx?.drawImage(img, 0, 0, img.width, img.height);
+			ctx?.restore();
+			src = canvas.toDataURL();
+		}
+		const ev = new MouseEvent("click");
+		const a = document.createElement("a");
+		a.download = "image";
+		a.href = src;
+		a.dispatchEvent(ev);
+	}
+	const saveImgRow = new UIRow().setDisplay( 'none' );
+	saveImgRow.add(new UIText()
+		.setClass( 'Label' ) )
+		.setMarginLeft(indent);
+	const saveImgBtn = new UIButton( strings.getKey("sidebar/mapMore/saveImgLabel") )
+		.setWidth( selectWidth )
+		.setFontSize( selectFontSize )
+		.onClick( saveImg );
+	saveImgRow.add(saveImgBtn);
+	uiParent.add(saveImgRow);
+	moreRows.push(saveImgRow);
 
 	// wrapS
 	const wrapSRow = new UIRow().setDisplay( 'none' );
@@ -190,11 +230,6 @@ function SidebarMaterialMapMoreProperty( editor, property, uiParent ) {
 	mappingRow.add(mapping);
 	uiParent.add(mappingRow);
 	moreRows.push(mappingRow);
-
-	let object = null;
-	let map = null;
-	let materialSlot = null;
-	let material = null;
 
 	function onMoreSettingsChange() {
 		if (!map) return;

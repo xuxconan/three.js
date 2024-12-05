@@ -343,6 +343,7 @@ function Strings( config ) {
 
 			'sidebar/mapMore/showBtnLabel': 'More',
 			'sidebar/mapMore/hideBtnLabel': 'Hide',
+			'sidebar/mapMore/saveImgLabel': 'Save',
 			'sidebar/mapMore/wrapSLabel': 'WrapS',
 			'sidebar/mapMore/wrapTLabel': 'WrapT',
 			'sidebar/mapMore/wrapModeOptions/repeatWrapping': 'RepeatWrapping',
@@ -770,6 +771,7 @@ function Strings( config ) {
 
 			'sidebar/mapMore/showBtnLabel': 'More',
 			'sidebar/mapMore/hideBtnLabel': 'Hide',
+			'sidebar/mapMore/saveImgLabel': 'Save',
 			'sidebar/mapMore/wrapSLabel': 'WrapS',
 			'sidebar/mapMore/wrapTLabel': 'WrapT',
 			'sidebar/mapMore/wrapModeOptions/repeatWrapping': 'RepeatWrapping',
@@ -1197,6 +1199,7 @@ function Strings( config ) {
 
 			'sidebar/mapMore/showBtnLabel': '更多',
 			'sidebar/mapMore/hideBtnLabel': '隐藏',
+			'sidebar/mapMore/saveImgLabel': '保存图片',
 			'sidebar/mapMore/wrapSLabel': '水平包裹模式(wrapS)',
 			'sidebar/mapMore/wrapTLabel': '垂直包裹模式(wrapT)',
 			'sidebar/mapMore/wrapModeOptions/repeatWrapping': '平铺包裹',
@@ -1624,6 +1627,7 @@ function Strings( config ) {
 
 			'sidebar/mapMore/showBtnLabel': 'More',
 			'sidebar/mapMore/hideBtnLabel': 'Hide',
+			'sidebar/mapMore/saveImgLabel': 'Save',
 			'sidebar/mapMore/wrapSLabel': 'WrapS',
 			'sidebar/mapMore/wrapTLabel': 'WrapT',
 			'sidebar/mapMore/wrapModeOptions/repeatWrapping': 'RepeatWrapping',
