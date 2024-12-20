@@ -9,6 +9,7 @@ import { SidebarMaterialBooleanProperty } from './Sidebar.Material.BooleanProper
 import { SidebarMaterialColorProperty } from './Sidebar.Material.ColorProperty.js';
 import { SidebarMaterialConstantProperty } from './Sidebar.Material.ConstantProperty.js';
 import { SidebarMaterialMapProperty } from './Sidebar.Material.MapProperty.js';
+import { SidebarMaterialMapCompressor } from './Sidebar.Material.Map.Compressor.js';
 import { SidebarMaterialMapMoreProperty } from './Sidebar.Material.MapMoreProperty.js';
 import { SidebarMaterialNumberProperty } from './Sidebar.Material.NumberProperty.js';
 import { SidebarMaterialRangeValueProperty } from './Sidebar.Material.RangeValueProperty.js';
@@ -211,138 +212,161 @@ function SidebarMaterial( editor ) {
 
 	const materialMap = new SidebarMaterialMapProperty( editor, 'map', strings.getKey( 'sidebar/material/map' ) );
 	container.add( materialMap );
+	new SidebarMaterialMapCompressor( editor, "map", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'map', container );
 
 	// specular map
 
 	const materialSpecularMap = new SidebarMaterialMapProperty( editor, 'specularMap', strings.getKey( 'sidebar/material/specularmap' ) );
 	container.add( materialSpecularMap );
+	new SidebarMaterialMapCompressor( editor, "specularMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'specularMap', container );
 
 	// emissive map
 
 	const materialEmissiveMap = new SidebarMaterialMapProperty( editor, 'emissiveMap', strings.getKey( 'sidebar/material/emissivemap' ) );
 	container.add( materialEmissiveMap );
+	new SidebarMaterialMapCompressor( editor, "emissiveMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'emissiveMap', container );
 
 	// matcap map
 
 	const materialMatcapMap = new SidebarMaterialMapProperty( editor, 'matcap', strings.getKey( 'sidebar/material/matcap' ) );
 	container.add( materialMatcapMap );
+	new SidebarMaterialMapCompressor( editor, "matcap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'matcap', container );
 
 	// alpha map
 
 	const materialAlphaMap = new SidebarMaterialMapProperty( editor, 'alphaMap', strings.getKey( 'sidebar/material/alphamap' ) );
 	container.add( materialAlphaMap );
+	new SidebarMaterialMapCompressor( editor, "alphaMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'alphaMap', container );
 
 	// bump map
 
 	const materialBumpMap = new SidebarMaterialMapProperty( editor, 'bumpMap', strings.getKey( 'sidebar/material/bumpmap' ) );
 	container.add( materialBumpMap );
+	new SidebarMaterialMapCompressor( editor, "bumpMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'bumpMap', container );
 
 	// normal map
 
 	const materialNormalMap = new SidebarMaterialMapProperty( editor, 'normalMap', strings.getKey( 'sidebar/material/normalmap' ) );
 	container.add( materialNormalMap );
+	new SidebarMaterialMapCompressor( editor, "normalMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'normalMap', container );
 
 	// clearcoat map
 
 	const materialClearcoatMap = new SidebarMaterialMapProperty( editor, 'clearcoatMap', strings.getKey( 'sidebar/material/clearcoatmap' ) );
 	container.add( materialClearcoatMap );
+	new SidebarMaterialMapCompressor( editor, "clearcoatMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'clearcoatMap', container );
 
 	// clearcoat normal map
 
 	const materialClearcoatNormalMap = new SidebarMaterialMapProperty( editor, 'clearcoatNormalMap', strings.getKey( 'sidebar/material/clearcoatnormalmap' ) );
 	container.add( materialClearcoatNormalMap );
+	new SidebarMaterialMapCompressor( editor, "clearcoatNormalMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'clearcoatNormalMap', container );
 
 	// clearcoat roughness map
 
 	const materialClearcoatRoughnessMap = new SidebarMaterialMapProperty( editor, 'clearcoatRoughnessMap', strings.getKey( 'sidebar/material/clearcoatroughnessmap' ) );
 	container.add( materialClearcoatRoughnessMap );
+	new SidebarMaterialMapCompressor( editor, "clearcoatRoughnessMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'clearcoatRoughnessMap', container );
 
 	// displacement map
 
 	const materialDisplacementMap = new SidebarMaterialMapProperty( editor, 'displacementMap', strings.getKey( 'sidebar/material/displacementmap' ) );
 	container.add( materialDisplacementMap );
+	new SidebarMaterialMapCompressor( editor, "displacementMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'displacementMap', container );
 
 	// roughness map
 
 	const materialRoughnessMap = new SidebarMaterialMapProperty( editor, 'roughnessMap', strings.getKey( 'sidebar/material/roughnessmap' ) );
 	container.add( materialRoughnessMap );
+	new SidebarMaterialMapCompressor( editor, "roughnessMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'roughnessMap', container );
 
 	// metalness map
 
 	const materialMetalnessMap = new SidebarMaterialMapProperty( editor, 'metalnessMap', strings.getKey( 'sidebar/material/metalnessmap' ) );
 	container.add( materialMetalnessMap );
+	new SidebarMaterialMapCompressor( editor, "metalnessMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'metalnessMap', container );
 
 	// iridescence map
 
 	const materialIridescenceMap = new SidebarMaterialMapProperty( editor, 'iridescenceMap', strings.getKey( 'sidebar/material/iridescencemap' ) );
 	container.add( materialIridescenceMap );
+	new SidebarMaterialMapCompressor( editor, "iridescenceMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'iridescenceMap', container );
 
 	// sheen color map
 
 	const materialSheenColorMap = new SidebarMaterialMapProperty( editor, 'sheenColorMap', strings.getKey( 'sidebar/material/sheencolormap' ) );
 	container.add( materialSheenColorMap );
+	new SidebarMaterialMapCompressor( editor, "sheenColorMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'sheenColorMap', container );
 
 	// sheen roughness map
 
 	const materialSheenRoughnessMap = new SidebarMaterialMapProperty( editor, 'sheenRoughnessMap', strings.getKey( 'sidebar/material/sheenroughnessmap' ) );
 	container.add( materialSheenRoughnessMap );
+	new SidebarMaterialMapCompressor( editor, "sheenRoughnessMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'sheenRoughnessMap', container );
 
 	// iridescence thickness map
 
 	const materialIridescenceThicknessMap = new SidebarMaterialMapProperty( editor, 'iridescenceThicknessMap', strings.getKey( 'sidebar/material/iridescencethicknessmap' ) );
 	container.add( materialIridescenceThicknessMap );
+	new SidebarMaterialMapCompressor( editor, "iridescenceThicknessMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'iridescenceThicknessMap', container );
 
 	// env map
 
 	const materialEnvMap = new SidebarMaterialMapProperty( editor, 'envMap', strings.getKey( 'sidebar/material/envmap' ) );
 	container.add( materialEnvMap );
+	new SidebarMaterialMapCompressor( editor, "envMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'envMap', container );
 
 	// light map
 
 	const materialLightMap = new SidebarMaterialMapProperty( editor, 'lightMap', strings.getKey( 'sidebar/material/lightmap' ) );
 	container.add( materialLightMap );
+	new SidebarMaterialMapCompressor( editor, "lightMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'lightMap', container );
 
 	// ambient occlusion map
 
 	const materialAOMap = new SidebarMaterialMapProperty( editor, 'aoMap', strings.getKey( 'sidebar/material/aomap' ) );
 	container.add( materialAOMap );
+	new SidebarMaterialMapCompressor( editor, "aoMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'aoMap', container );
 
 	// gradient map
 
 	const materialGradientMap = new SidebarMaterialMapProperty( editor, 'gradientMap', strings.getKey( 'sidebar/material/gradientmap' ) );
 	container.add( materialGradientMap );
+	new SidebarMaterialMapCompressor( editor, "gradientMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'gradientMap', container );
 
 	// transmission map
 
 	const transmissionMap = new SidebarMaterialMapProperty( editor, 'transmissionMap', strings.getKey( 'sidebar/material/transmissionmap' ) );
 	container.add( transmissionMap );
+	new SidebarMaterialMapCompressor( editor, "transmissionMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'transmissionMap', container );
 
 	// thickness map
 
 	const thicknessMap = new SidebarMaterialMapProperty( editor, 'thicknessMap', strings.getKey( 'sidebar/material/thicknessmap' ) );
 	container.add( thicknessMap );
+	new SidebarMaterialMapCompressor( editor, "thicknessMap", container, container );
 	new SidebarMaterialMapMoreProperty( editor, 'thicknessMap', container );
 
 	// side
